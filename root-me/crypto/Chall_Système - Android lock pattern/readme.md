@@ -63,5 +63,10 @@ Cette exploration est faite avec une fonction récursive (`try_extend_pattern`),
 - et la valeur cible (`target_hash` = contenu de `gesture.key`).
 
   
+## Resultat
+
+Ne prenez pas en compte le nom du fichier dans ce screen, je testait mon code, qui au depart ne marchais pas XD
+
+<img width="481" height="79" alt="image" src="https://github.com/user-attachments/assets/42f02f92-d726-47dd-ae90-31b30a26cc98" />
 
   
