@@ -21,7 +21,12 @@ Puis on part en brut-force avec hashcat et une wordlist comme rockyou
 <img width="433" height="157" alt="image" src="https://github.com/user-attachments/assets/c6fd6125-5169-4d9b-8e97-b5bd8a312e49" />
 
 
+
+
 <img width="404" height="34" alt="image" src="https://github.com/user-attachments/assets/6a47b072-e26e-49fb-9fa4-9c79d68a61b1" />
+
+
+
 
 
 <img width="386" height="67" alt="image" src="https://github.com/user-attachments/assets/3fef1e65-c5dd-49cb-b011-a1c40a46f4e8" />
