@@ -171,7 +171,7 @@ Le chiffrement est juste un XOR → facile à inverser si on retrouve la clé.
 
 Résultat :
 Avec le code du programme, le fichier .crypt, et la date approximative,
-tu peux retrouver la même clé et déchiffrer tout le fichier.
+On peut retrouver la même clé et déchiffrer tout le fichier.
 
 ## Ce qu'on fait
 
