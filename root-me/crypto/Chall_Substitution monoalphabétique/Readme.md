@@ -31,3 +31,8 @@ Donc par exemple :
 
 ## Decoder le polybe
 
+On créer un petit script python qui viens nous decoder notre txt
+
+[decoder_polybe.py](./decoder_polybe.py)
+
+
