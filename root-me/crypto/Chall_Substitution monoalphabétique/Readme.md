@@ -54,5 +54,10 @@ substitution = {
 
 On a plus qu'a faire un petit script python
 
+[decoder_monoalphabetique.py](./decoder_monoalphabetique.py)
 
+
+## RESULTAT
+
+on trouve une phrase qui indique le flag
 
