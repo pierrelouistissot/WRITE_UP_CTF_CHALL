@@ -191,6 +191,18 @@ Et d'apres la documentation les fichiers bzip2 commencent toujours par **BZh**
 
 Donc on peut partir du principe que si après dechiffrement le fichier commence par BZh, alors on a trouvé la bonne clé
 
+Le code:
+[crack_key.py](./crack_key.py)
+
+## Resultat
+
+le fichier déchiffré oDjbNkIoLpaMo.bz2.crypt.dec est un fichier bzip2 valide.
+
+On le decompresse et on obtient
+
+<img width="529" height="114" alt="image" src="https://github.com/user-attachments/assets/5f19d981-0ccf-41e9-b3d9-0cb2b40dfa88" />
+
+
 
 
 
