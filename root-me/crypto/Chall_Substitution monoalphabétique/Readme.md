@@ -22,8 +22,7 @@ lignes codées par a b c d e  ,  colonnes codées par 1 2 3 4 5
 | **e** | u | v | x | y | z |
 
 
-📎 [DOC le carré de Polybe (PDF)](./files/FR%20-%20Le%20carré%20de%20Polybe.pdf)
-
+[Télécharger le carré de Polybe (PDF)](./FR%20-%20Le%20carré%20de%20Polybe.pdf)
 
 Donc par exemple :
 
@@ -34,5 +33,26 @@ Donc par exemple :
 On créer un petit script python qui viens nous decoder notre txt
 
 [decoder_polybe.py](./decoder_polybe.py)
+
+
+## Casser la substitution monoalphabétique
+
+### Analyse de frequence
+On donne le texte a DCODE, qui nous ressort le mapping des lettres:
+
+
+
+Conserver les espaces : la substitution est monoalphabétique lettre→lettre.
+
+substitution = {
+    'a':'t','b':'j','c':'e','d':'o','e':'z','f':'r','g':'h','h':'c','i':'m',
+    'j':'x','k':'q','l':'g','m':'b','n':'l','o':'v','p':'s','q':'i','r':'d',
+    's':'n','t':'y','u':'p','v':'f','x':'a','z':'u'
+}
+
+### SCRIPT
+
+On a plus qu'a faire un petit script python
+
 
 
