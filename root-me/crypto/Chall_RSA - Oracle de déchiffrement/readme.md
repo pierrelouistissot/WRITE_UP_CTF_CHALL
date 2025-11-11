@@ -61,5 +61,7 @@ Finalement on convertie m en bytes pour lire le flag
 
 Pas besoin de prendre un gros S, on va prendre 2
 
+Le code expliqué brievement: [RSA_ATTACK.py](./RSA_ATTACK.py)
+
 
 
