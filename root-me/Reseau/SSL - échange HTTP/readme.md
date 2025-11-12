@@ -48,6 +48,37 @@ Ensuite on va exporter le certificat
 
 On a l'indice l’indice inurl:server.pem
 
-On trouve le server.pem 
+On trouve le server.pem ==> [server.pem](./server.pem)
+
+Avant de trouver la bonne, j'en ai testé pas mal, ducoup pour voir si c'etais la bonne je comparer les modudulus:
+
+
+<img width="897" height="113" alt="image" src="https://github.com/user-attachments/assets/fd5263c2-838c-411c-a1c8-d63fa773794d" />
+
+
+Si les trois valeurs MD5 sont identiques, alors on est bon
+
+### Resultat
+
+Une fois la bonne clé trouvé, on va dans wireshark
+
+Edit => Preferences => Protocols => TLS => RSA keys list => New =>
+
+<img width="961" height="794" alt="image" src="https://github.com/user-attachments/assets/97274772-f8b8-4282-8cad-265b134eca83" />
+
+Puis on va dans  Analyze=>Follow=>TLS Stream => et BAM le flag apparait, vous avez reussi a dechiffrer le HTTP en clair!
+
+### PTS IMPORTANT
+
+Tu ne peux pas extraire une clé privée d’un pcap.
+
+
+Tu peux extraire le certificat depuis le pcap.
+
+
+Si la session a utilisé RSA key exchange, et si tu trouves la clé privée correspondante  alors tu peux reconstruire la clé symétrique (AES) et décrypter le HTTP.
+
+
+
 
 
