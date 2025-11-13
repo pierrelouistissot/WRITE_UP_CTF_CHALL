@@ -54,7 +54,7 @@ On à donc l'adresse de SYSTEM
 **0x8b21c008**
 Maintenant qu’on sait où est SYSTEM, on peut ouvrir la bonne clef :
 
-<img width="1094" height="229" alt="image" src="https://github.com/user-attachments/assets/572aacce-7b78-4d69-b650-6426aed93db7" />£
+<img width="1094" height="229" alt="image" src="https://github.com/user-attachments/assets/572aacce-7b78-4d69-b650-6426aed93db7" />
 
 FACILE!!!!!!
 
