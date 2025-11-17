@@ -60,6 +60,26 @@ FACILE!!!!!!
 
 
 
+## Command & Control 3
+
+Il faut trouver le programme malveillant dans la mémoire vive:
+
+Il faut commencer par chercher dans la liste des Process, dans notre cas elle est assez grosse, ducoup on fait:
+
+On montre donc la liste des process avec une vue parent enfant (pstree)
+
+On voit qu'il y a un process iexplorer , a pour enfant un cmd.exe, on prend ensuite son chemin complet et on le met en MD5
+
+
+## Command & Control 4
+
+On dmp la memoire du process , et on cherche quelque chose qui aurait une IP de réseau interne, (192.168.xxx.XXX)
+
+
+
+
+
+
 
 
 
