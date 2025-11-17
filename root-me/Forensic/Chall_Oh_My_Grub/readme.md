@@ -1,3 +1,27 @@
+## Contexte
+
+
+On à un fichier : root.ova
+Le scénario dit que la société a perdu l’accès à un serveur important.
+Un fichier .ova correspond à une machine virtuelle exportée.
+
+Donc, ce qu'on a entre les mains, c’est le disque dur d’un serveur sous forme de fichier.
+
+Pas besoin d’allumer la VM. Pas besoin d’avoir les mots de passe.
+
+En forensic, on monte directement le disque et on lit tout.
+
+### C'est quoi un fichier ova
+
+.ova(Open Virtual Appliance) ==> C est une archive TAR qui contient un fichier (ovf=> description de la vm) et un fichier (.vmdk=> disque dur de la vm)
+
+
+Donc la premiere etape qu'on fait c'est de l'extraire comme un zip:
+
+
+
+
+
 
 <img width="485" height="133" alt="image" src="https://github.com/user-attachments/assets/179ab225-9471-4169-8ce4-7bc1aace4f1d" />
 
