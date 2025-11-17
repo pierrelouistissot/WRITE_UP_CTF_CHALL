@@ -55,7 +55,9 @@ Internet Explorer (affecté par une configuration modifiée)
 
 On cherche les occurrences du fichier .docm :
 
-```python3 vol.py -f memory.dmp windows.filescan | grep Very_sexy
+```
+python3 vol.py -f memory.dmp windows.filescan | grep Very_sexy
+
 ```
 <img width="788" height="43" alt="image" src="https://github.com/user-attachments/assets/b5508358-49cc-4cab-bbe6-f0b6de4c9f1f" />
 
@@ -89,6 +91,7 @@ indiquer que c’est un fichier Word macro-enabled (.docm = Document + Macro)
 
 `
 mv dump/file.0xf3ee038.0x84cb24e8.DataSectionObject.Very_sexy.docm.dat Very_sexy.docm
+
 `
 ### Analyse de la macro malveillante
 
@@ -159,12 +162,16 @@ avec des mots-clés reconnaissables qui doivent apparaître dans la RAM en clair
 
 La structure d'un PAC c est généralement:
 
-```function FindProxyForURL(url, host) {
+```
+
+function FindProxyForURL(url, host) {
     if (shExpMatch(host, "*.site.com")) {
         return "PROXY 1.2.3.4:8080";
     }
     return "DIRECT";
 }
+
+
 ```
 Donc on fait
 
