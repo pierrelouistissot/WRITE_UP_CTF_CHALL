@@ -1,20 +1,97 @@
 ## Contexte:
 
-Énoncé
-Vous êtes mandaté par l’équipe SOC de l’entreprise Cat Corporation pour retrouver le mot de passe d’un utilisateur lié à une connexion NTLM over SMB suspecte.
+Entreprise fictive : Cat Corporation
 
-Format du flag : RM{userPrincipalName:password}
+Équipe : SOC qui enquête sur une authentification NTLM over SMB suspecte.
+
+Fichier fourni : ntlm_auth.pcapng (capture réseau, hash SHA256 donné dans l’énoncé pour vérifier l’intégrité).
+
+Objectif : retrouver le mot de passe de l’utilisateur utilisé dans cette authentification NTLM.
+
+Format du flag :
+
+RM{userPrincipalName:password}
 
 
-Le protocole d'authentification NTLM ou “New Technology Lan Manager” a été créé en 1993 pour remplacer le protocole Lan Manager devenu trop vulnérable. NTLM est utilisé pour vérifier l'identité d'un utilisateur ou d'une machine sur un réseau en se basant sur un système de challenge-response.
+## fonctionnement de NTLM
 
-Le principe de l’authentification NTLM est le suivant :
+### Le handshake
 
-En premier lieu, le client indique au serveur qu’il souhaite s’authentifier.
+**Type 1 – NEGOTIATE :**
+Le client envoie un message au serveur pour annoncer qu’il souhaite utiliser NTLM, avec ses capacités.
 
-Puis, le serveur répond avec un défi, ou un challenge, qui n’est rien d’autre qu’une suite aléatoire de caractères.
+**Type 2 – CHALLENGE :**
+Le serveur répond avec :
 
-Ensuite, le client chiffre ce challenge avec son secret (hash NT de son mot de passe ou hash LM pour rétrocompatibilité), et renvoie le résultat au serveur, c’est sa réponse.
+Un server challenge (8 octets aléatoires).
 
-Enfin, le serveur effectue la même opération avec le hash du mot de passe correspondant au nom de domaine et au nom d’utilisateur voulant s’authentifier. Il compare ensuite le résultat avec celui envoyé par le client. Si la comparaison est valide, le client est authentifié sur le serveur.
+Des infos sur le domaine/serveur cible.
 
+**Type 3 – AUTHENTICATE :**
+Le client renvoie :
+
+Le nom d’utilisateur (ici john.doe).
+
+Le domaine (ici catcorp.local).
+
+Le type de réponse NTLM (NTLMv1 ou NTLMv2 ; ici NTLMv2).
+
+Un NTLMv2 Response calculé à partir :
+
+du mot de passe,
+
+du challenge serveur,
+
+et d’un blob contenant des infos (timestamp, target info, etc.).
+
+### NTLMv2
+
+Pour NTLMv2 :
+
+On calcule d’abord le NTLM hash : MD4 du mot de passe en UTF-16LE.
+
+Puis le NTLMv2 hash = HMAC-MD5(NTLM_hash, (USERNAME_UPPER + DOMAIN) en UTF-16LE).
+
+Enfin la NTProofStr = HMAC-MD5(NTLMv2_hash, ServerChallenge + Blob).
+
+Le serveur, qui connaît le NTLM hash (stocké en AD), refait le calcul et vérifie que la NTProofStr correspond.
+
+## analyse
+
+On a ensuite repéré la trame 51 :
+
+SMB2 - Session Setup Request (NTLMSSP_AUTH) avec :
+
+User name : john.doe
+
+Domain name : catcorp.local
+
+NTLMv2 Response détaillée
+
+Dans la partie NTLMSSP_AUTH de cette trame, Wireshark te donne notamment :
+
+Server Challenge : trouvé dans la trame Type 2 (CHALLENGE), ici :
+1944952f5b845d73
+
+NTProofStr (début du NTLMv2 Response) :
+5c336c6b69fd2cf7b64eb0bde3102162
+
+NTLMv2 Response blob (le reste après la NTProofStr) :
+01010000000000001a9790044b63da0175...0000000000000000
+
+À partir des infos de la trame 51, on construit la ligne au format attendu par hashcat (mode 5600, NetNTLMv2).
+
+USERNAME::DOMAIN:SERVER_CHALLENGE:NT_PROOF:NTLM_RESPONSE_BLOB
+
+```
+JOHN.DOE::catcorp.local:1944952f5b845db1:5c336c6b69fd2cf7b64eb0bde3102162:01010000000000001a9790044b63da0175304c546c6f34320000000002000e0043004100540043004f005200500001000800440043003000310004001a0063006100740063006f00720070002e006c006f00630061006c000300240044004300300031002e0063006100740063006f00720070002e006c006f00630061006c0005001a0063006100740063006f00720070002e006c006f00630061006c00070008001a9790044b63da010900120063006900660073002f0044004300300031000000000000000000
+
+
+```
+
+Puis on crack tout ca avec hashcat en mode -m 5600 => NetNTLMv2
+
+```
+hashcat -m 5600 hash.txt rockyou.txt -O
+
+```
