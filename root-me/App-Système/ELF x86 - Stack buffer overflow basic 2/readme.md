@@ -67,3 +67,6 @@ puis cat → garde le flux ouvert et continue à alimenter l’entrée
 
 donc ton shell /bin/bash peut vivre et devenir interactif.
 
+<img width="877" height="288" alt="image" src="https://github.com/user-attachments/assets/fc67c17b-143a-4383-8f56-c1fd7869cc6e" />
+
+
