@@ -54,3 +54,6 @@ Voici un schéma qui illustre le rôle des registres EBP et ESP :
 
 
 
+
+
+
