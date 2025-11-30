@@ -57,24 +57,56 @@ Donc on va fabriquer la pile à la main pour qu’au moment où main fait ret, l
 EIP = Extended Instruction Pointer
 C’est LE registre qui contient l’adresse de la prochaine instruction machine que le CPU va exécuter
 
-Quand en C on fait `system("/bin/sh");`, le compilateur genere un **call system**
-Un call fait 2 choses:
+Quand une fonction finit, elle fait un retour
+Et ce retour dit :
+“Reviens à l’endroit où tu étais avant d’entrer dans cette fonction”.
+Cet endroit est stocké dans EIP.
+Si tu veux : EIP = “où je dois aller maintenant pour continuer le programme”
+Quand tu écrases cette valeur → tu contrôles où le programme va.
 
--push l’adresse de retour sur la pile
--met EIP à l’adresse de system()
+Dans la ram on a:
 
-Donc apres un call system on a `EIP = adresse_de_system`
+```
+message[20]    (20 cases)
+EBP
+EIP
+```
 
+Mais strcpy(message, argv[1]) copie PLUS que 20 cases.
+```
+message : AAAAAAAAAAAAAAAAAAAAAAAA (20)
+EBP     : AAAA
+EIP     : AAAA   ← c'est ici qu'on met system()
 
-Maintenant EIP dans un overflow :
+```
 
-[ buffer ]
-[ EBP sauvegardé ]
-[ EIP sauvegardé ]  <-- ce qu’on écrase !
+Et donc quand le programme fait un return
+Il va faire :
+
+“Je vais aller à l’adresse écrite dans la case EIP”
+
+Donc on redirige le programme
+
+**Pourquoi prendre exit aussi**
+
+Parce que system(), quand il termine, fait un ret.
+Et ret dit :
+
+“Où dois-je aller ensuite ? Je prends l’adresse sur la pile.”
+Donc :
+
+Si tu mets rien → ret va sauter vers une adresse aléatoire → CRASH.
+Si tu mets exit →
+quand system() finit, il ira dans exit(), qui termine proprement le programme.
+
 
 
 ## Payload
 
 <img width="1098" height="106" alt="image" src="https://github.com/user-attachments/assets/1434709d-a9f1-4978-98ae-0f2b6656a09f" />
 
+
+```
+
+```
  
