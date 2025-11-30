@@ -107,6 +107,22 @@ quand system() finit, il ira dans exit(), qui termine proprement le programme.
 
 
 ```
+[ 32 A ]       <-- remplir message + EBP
+[ system ]     <-- nouvelle adresse où aller
+[ exit ]       <-- adresse de retour pour system
+[ "/bin/sh" ]  <-- argument de system
 
 ```
  
+```
+------------------------------------
+| AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | 32 A
+------------------------------------
+|   system() address              |  <-- deviendra EIP après return
+------------------------------------
+|   exit() address                |  <-- retour de system()
+------------------------------------
+|   "/bin/sh" address             |  <-- argument de system()
+------------------------------------
+
+```
