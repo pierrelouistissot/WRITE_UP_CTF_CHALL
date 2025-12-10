@@ -31,3 +31,4 @@ Donc 16 + 4 + 4 = 24.
 
 
 
+<img width="474" height="71" alt="image" src="https://github.com/user-attachments/assets/ff9c6dfd-a706-4fc9-830e-4e552e50dbf4" />
