@@ -71,7 +71,7 @@ PHP télécharge ce fichier via HTTP ==> PHP exécute le code du fichier comme s
 
 Le PHP ne s’exécute pas chez nous, il s’exécute sur le serveur Root-Me.
 
-<img width="779" height="201" alt="image" src="https://github.com/user-attachments/assets/4fef86b5-66fb-4d7e-9c65-8b2b48703815" />
+<img width="620" height="427" alt="image" src="https://github.com/user-attachments/assets/cebd3dba-12d6-4551-aaf4-466b2a420ac4" />
 
 ## Conclusion
 
