@@ -50,6 +50,43 @@ On va donc interroger AD avec son protocol ldap:
 <img width="1956" height="80" alt="image" src="https://github.com/user-attachments/assets/1e9d1650-5b7a-4f70-968b-7ac032b1021e" />
 
 On a donc un deuxieme compte, on va voir si il a acces au share:
+On voit qu'il a acces au share DEV, dedans on trouve backup_scripts.ps1 avec dedans un nouveau compte
+
+<img width="810" height="320" alt="image" src="https://github.com/user-attachments/assets/2989607a-dc16-4c64-96ba-ff92ca3fba8a" />
+
+On va donc mtn voir si elle a des acces, on voit qu'elle a acces au shares C
+
+<img width="814" height="543" alt="image" src="https://github.com/user-attachments/assets/d46b5e71-5f2d-4d5b-bb86-f50267b8f594" />
+
+on trouve sur son bureaux le premier flag
+
+Ensuite on va voir les privilieges qu'elle a dans l'AD:
+
+<img width="814" height="543" alt="image" src="https://github.com/user-attachments/assets/a5ce30a9-45bf-4fc6-aa08-41863d1f30ed" />
+
+On voit qu'elle a le priviliege de SeBackupPrivilege
+
+un backup operateur doit pouvoir sauvegarder les serveurs et recuperer les données apres crash donc on sait que les données sont stockées dans les hives: (SAM,SYSTEM,NTDS.dit) donc on peut recuperer les hashesok 
+
+
+On en profite:
+
+<img width="1215" height="682" alt="image" src="https://github.com/user-attachments/assets/52361eb8-5d61-47e0-8c97-3b07e43a50fd" />
+
+<img width="1152" height="373" alt="image" src="https://github.com/user-attachments/assets/02519322-35d2-460f-9f60-b239ec52cc2c" />
+
+<img width="1076" height="194" alt="image" src="https://github.com/user-attachments/assets/68910bbb-6494-4b91-a722-48b991df4af8" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
