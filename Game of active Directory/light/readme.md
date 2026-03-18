@@ -128,7 +128,58 @@ robb.stark => hash DCC2 (cracable)
 
 
 
-
+POINT DE DÉPART
+Aucun credential, accès réseau uniquement
+        │
+        ▼
+ÉTAPE 1 — Nmap scan
+→ Découverte : KINGSLANDING (DC1), WINTERFELL (DC2), CASTELBLACK (SRV)
+        │
+        ▼
+ÉTAPE 2 — Null Session SMB
+→ Enumération des users sans credentials
+→ Découverte : samwell.tarly:Heartsbane (mdp en description)
+        │
+        ▼
+ÉTAPE 3 — Kerberoasting avec samwell.tarly
+→ 3 hashes récupérés : jon.snow, sansa.stark, sql_svc
+        │
+        ▼
+ÉTAPE 4 — Cracking hashcat
+→ jon.snow:iknownothing
+→ sansa.stark:345ertdfg
+→ sql_svc: non cracké
+        │
+        ▼
+ÉTAPE 5 — BloodHound
+→ samwell.tarly a WriteDacl/WriteOwner sur GPO StarkWallpaper
+→ StarkWallpaper s'applique au domaine entier
+        │
+        ▼
+ÉTAPE 6 — GPO Abuse (pygpoabuse)
+→ Injection tâche planifiée dans StarkWallpaper
+→ Création compte hacker:Password123! admin local CASTELBLACK
+→ (Pwn3d!) sur CASTELBLACK
+        │
+        ▼
+ÉTAPE 7 — Credential Harvesting sur CASTELBLACK
+→ SAM dump : hashes comptes locaux
+→ LSA dump : sql_svc:YouWillNotKerboroast1ngMeeeeee (en clair !)
+→ LSASS dump : robb.stark hash NTLM
+        │
+        ▼
+ÉTAPE 8 — Pass-the-Hash robb.stark
+→ robb.stark est admin sur WINTERFELL (le DC !)
+→ (Pwn3d!) sur le Domain Controller
+        │
+        ▼
+ÉTAPE 9 — NTDS Dump
+→ Tous les hashes du domaine north.sevenkingdoms.local
+→ Hash Administrator : dbd13e1c4e338284ac4e9874f7de6ef4
+        │
+        ▼
+DOMAIN ADMIN 
+north.sevenkingdoms.local complètement compromis
 
 
 
