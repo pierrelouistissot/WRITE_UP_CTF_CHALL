@@ -1,4 +1,4 @@
-### Enumeration
+<img width="746" height="355" alt="image" src="https://github.com/user-attachments/assets/f24ee873-fddb-4753-95fa-5adb5c418225" />### Enumeration
 
 
 <img width="1324" height="343" alt="image" src="https://github.com/user-attachments/assets/3659e4a6-f73d-4abf-b702-d8bf7cfe3877" />
@@ -80,7 +80,17 @@ Voila la pipeline que je vais utiliser:
 
 <img width="746" height="355" alt="image" src="https://github.com/user-attachments/assets/eba091fa-3b19-44a3-9666-c88584879210" />
 
+Grâce à GenericAll sur le DC, on a pu modifier l'attribut msDS-AllowedToActOnBehalfOfOtherIdentity du DC.
 
+Concrètement on a dit au DC :
+
+"Fais confiance à FAKE$, il a le droit d'agir au nom de n'importe quel utilisateur"
+
+On a utilisé le mécanisme S4U2Proxy de Kerberos pour demander un ticket de service en se faisant passer pour Administrator.
+
+Kerberos a accepté parce que le DC était configuré pour faire confiance à FAKE$.
+
+On a présenté ce ticket au DC via SMB, le DC a cru qu'on était Administrator et nous a donné un shell SYSTEM.
 
 
 
