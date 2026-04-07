@@ -8,4 +8,7 @@
 
 
 On voit qu'on a plusieurs share accesible:
+<img width="1324" height="790" alt="image" src="https://github.com/user-attachments/assets/66f410a6-ffb0-4caf-9fb2-1515226c585a" />
+
+
 
