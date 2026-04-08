@@ -37,3 +37,44 @@ on trouve ca dans l'historique powershell :
 
 <img width="1594" height="231" alt="image" src="https://github.com/user-attachments/assets/927b127e-2612-4cd9-aee2-e423837ebfcc" />
 
+On trouve ces logins la:
+
+```
+$p = ConvertTo-SecureString 'E3R$Q62^12p7PLlC%KWaxuaV' -AsPlainText -Force
+$c = New-Object System.Management.Automation.PSCredential ('svc_deploy', $p)
+```
+C est les logs du compte `svc_deploy`
+
+svc = Service Account
+En environnement Windows/Active Directory, les comptes svc_* sont des comptes de service
+
+des comptes créés non pas pour un humain mais pour faire tourner des applications/services.
+Exemples courants :
+
+svc_backup → compte qui fait les sauvegardes
+svc_sql → compte qui fait tourner SQL Server
+svc_deploy → compte qui fait les déploiements (push de code, scripts d'install...)
+
+Ca nous rajoute donc un compte
+On regarde les groupes et acces de svc_deploy
+
+<img width="749" height="527" alt="image" src="https://github.com/user-attachments/assets/3ad22d46-3590-4fe5-8826-fc291601b0d4" />
+
+LAPS (Local Administrator Password Solution) c'est un outil Microsoft qui génère automatiquement des mots de passe aléatoires pour le compte Administrator local de chaque machine du domaine, et les stocke dans l'Active Directory.
+
+<img width="1369" height="271" alt="image" src="https://github.com/user-attachments/assets/79299d08-3065-4cac-aaf7-1ecb7ba7efeb" />
+
+<img width="1369" height="344" alt="image" src="https://github.com/user-attachments/assets/583d92c3-6a67-4894-b93d-4f1e653851c2" />
+
+ms-Mcs-AdmPwd c'est l'attribut AD où LAPS stocke le mot de passe Administrator. 
+
+Le mot de passe Administrator de DC01 est :
+
+`m6%04I]nG19[ymlb+V53%19b`
+
+On se connecte en WinRM, et on trouve le mdp de l'admin: ca98ac546626da5fcd6df05d2e748e08
+
+
+
+
+
