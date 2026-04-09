@@ -20,6 +20,29 @@ Settings du site
 ```
 <img width="939" height="538" alt="image" src="https://github.com/user-attachments/assets/17e70ae1-7148-49ee-992c-79cd12557f26" />
 
-le svc-printer est server-operators
+
+svc-printer est dans Server Operators
+      ↓
+Server Operators peut modifier les services
+      ↓
+Les services tournent en SYSTEM
+      ↓
+On change le binpath d'un service
+      ↓
+Le service exécute notre commande en tant que SYSTEM
+
+
+<img width="1351" height="475" alt="image" src="https://github.com/user-attachments/assets/048b583a-0477-4078-9f2b-9c00f6056942" />
+
+
+
+`sc.exe config VMTools binpath="cmd /c net localgroup administrators svc-printer /add"`
+
+Normalement VMTools lance vmtoolsd.exe. On a remplacé ce chemin par notre commande : `net localgroup administrators svc-printer /add`
+
+
+Quand le service redémarre, Windows exécute le binpath  donc notre commande  en tant que SYSTEM.
+
+
 
 
