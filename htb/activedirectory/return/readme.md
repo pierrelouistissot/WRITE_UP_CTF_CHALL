@@ -18,3 +18,8 @@ Settings du site
 └── Password : *******                     → mot de passe de ce compte
 
 ```
+<img width="939" height="538" alt="image" src="https://github.com/user-attachments/assets/17e70ae1-7148-49ee-992c-79cd12557f26" />
+
+le svc-printer est server-operators
+
+
